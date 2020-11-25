@@ -165,9 +165,9 @@ STUDY_CONFIG_FIXED_BOOLEAN = {
     "metrics": [{"goal": "MAXIMIZE", "metric": "accuracy"}],
     "parameters": [
         {
-            "discrete_value_spec": {"values": [1.0]},
+            "categorical_value_spec": {"values": ["True"]},
             "parameter": "condition",
-            "type": "DISCRETE",
+            "type": "CATEGORICAL",
         }
     ],
 }
@@ -406,7 +406,7 @@ class CloudTunerUtilsTest(tf.test.TestCase, parameterized.TestCase):
         hps.Fixed("condition", True)
         hparams = utils.convert_hyperparams_to_hparams(hps)
         expected_hparams = {
-            hparams_api.HParam("condition", hparams_api.Discrete([1])): 1,
+            hparams_api.HParam("condition", hparams_api.Discrete([True])): True,
         }
         self.assertEqual(repr(hparams), repr(expected_hparams))
 
